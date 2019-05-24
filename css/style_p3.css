@@ -1,0 +1,161 @@
+/* Définition du style de la page */
+
+@keyframes slidy {
+  0%, 25% {
+		transform: translateX(0%);
+	}
+  25%, 50% {
+    transform: translateX(-25%);
+  }
+  50%, 75% {
+    transform: translateX(-50%);
+  }
+	75%, 100% {
+		transform: translateX(-75%); 
+	}
+}
+
+body
+{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#bloc_page
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style slider */
+
+header
+{
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-color: grey;
+  overflow: hidden;
+}
+
+h1
+{
+  position: relative;
+  z-index: 2;
+  top: 3rem;
+  left: 45rem;
+  width: fit-content;
+  font-size: 3rem;
+}
+#slider
+{
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 400%;
+  animation: slidy 20s alternate infinite;
+}
+.slide
+{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  height: 500px;
+  background-color: green;
+}
+
+.descript
+{
+  position: absolute;
+  bottom: 2rem;
+  left: 5rem;
+  font-size: 3rem;
+}
+
+/* Style section */
+
+section
+{
+  width: 90%;
+  margin-top: 2rem;
+}
+
+#container
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#map
+{
+  width: 50rem;
+  height: 20rem;
+  margin-top: 2rem;
+  background-color: orange;
+}
+
+fieldset
+{
+  width: 20rem;
+  height: 15rem;
+  box-sizing: border-box;
+  margin-top: 2rem;
+  background-color: white;
+  border: 2px solid lightgrey;
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px darkgrey;
+}
+
+legend
+{
+  padding: 2px 3px 2px 3px;
+  background-color: inherit;
+}
+
+#nom
+{
+  margin-left: 1rem;
+}
+#prenom
+{
+  margin-top: 1rem;
+}
+
+#resa_submit
+{
+  margin: 1rem 4rem 1rem 7rem;
+}
+
+
+#resa
+{
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+
+/* Définition media queries */
+
+@media only screen and (max-width: 600px)
+{
+  h1
+  {
+    top: 1.5rem;
+    left: 1.8rem;
+    font-size: 2rem;
+  }
+  fieldset
+  {
+    width: 18rem;
+    height: 15rem;
+  }
+  #resa_submit
+  {
+    margin: 1rem 4rem 1rem 6rem;
+  }
+}

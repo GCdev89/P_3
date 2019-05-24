@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../css/style_p3.css"  />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <title>Projet_3</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+
+
+    <body>
+      <div id="bloc_page">
+        <header>
+          <h1>Réservation de vélo</h1>
+          <div id="slider">
+            <div class="slide">
+              <p class="descript">test 1</p>
+            </div>
+            <div class="slide">
+              <p class="descript">test 2</p>
+            </div>
+            <div class="slide">
+              <p class="descript">test 3</p>
+            </div>
+            <div class="slide">
+              <p class="descript">test 4</p>
+            </div>
+          </div>
+        </header>
+
+        <section>
+          <div id="container">
+            <div id="map">
+
+            </div>
+            <div id="form">
+              <fieldset>
+                <legend>
+                  Détail de la station
+                </legend>
+                <p>Adresse : <span id="adresse"></span></p>
+                <p><spans id="places"></spans> places</spans></br>
+                <span id ="dispo"></span> vélos disponnibles</p>
+                <label for="nom">Nom</label> :
+                <input type="text" name="nom" id="nom" required /><br />
+                <label for="prenom">Prénom</label> :
+                <input type="text" name="prenom" id="prenom" required /><br />
+                <input type="submit" value="Réserver" id="resa_submit" />
+              </fieldset>
+            </div>
+          </div>
+          <div id="resa">
+            <p>Vélo réservé à la station <span id"resa_place"></span> par <span id="resa_name"></span></br>
+            Temps restant : <span id="resa_left"></span></p>
+          </div>
+        </section>
+      </div>
+    </body>
+
+</html>
