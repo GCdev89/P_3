@@ -75,6 +75,7 @@ h1
 }
 
 .carousel_container {
+
   transition: transform 0.3s;
   transform: translate3d(0, 0, 0);
 }
@@ -112,7 +113,7 @@ h1
 }
 .carousel_prev-hidden, .carousel_next-hidden
 {
-  display: none;
+  opacity: 0;
 }
 
 .carousel_pagination
