@@ -24,6 +24,8 @@ class Carousel {
     this.isMobile = true;
     this.currentItem = 0;
     this.moveCallbacks = [];
+    this.intervalId = null;
+    this.intervalOn = true;
 
     // Modification du DOM
     this.root = this.createDivWithClass("carousel");
@@ -48,6 +50,7 @@ class Carousel {
     // Evènement
     this.moveCallbacks.forEach(cb => cb(0));
     this.onWindowresize();
+    this.defilAuto();
     window.addEventListener('resize', this.onWindowresize.bind(this));
     this.root.addEventListener("keyup", (e) => {
       if (e.key === "ArrowRight" || e.key === "Right") {
@@ -56,7 +59,7 @@ class Carousel {
         this.prev();
       }
     });
-    setInterval (this.next.bind(this), 5000);
+
   }
   /*
   *
@@ -147,6 +150,21 @@ class Carousel {
     this.container.style.transform = "translate3d("+ translateX +"%, 0, 0)";
     this.currentItem = index;
     this.moveCallbacks.forEach(cb => cb(index));
+  }
+
+  /*
+  *Gestion défilement automatique
+  */
+  defilAuto () {
+    this.intervalId = setInterval (this.next.bind(this), 5000);
+    this.container.addEventListener("click", () => {
+      if (this.intervalOn) {
+        clearInterval(this.intervalId);
+      } else {
+        this.intervalId = setInterval (this.next.bind(this), 5000);
+      }
+      this.intervalOn = !this.intervalOn
+    });
   }
 
   /**
