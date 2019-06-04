@@ -22,8 +22,7 @@ header
 {
   position: relative;
   width: 100%;
-  height: 500px;
-  background-color: blue;
+  height: 50rem;
   overflow-x: : hidden;
 }
 
@@ -31,7 +30,7 @@ h1
 {
   position: absolute;
   z-index: 2;
-  top: 1rem;
+  top: 0;
   left: 45rem;
   width: fit-content;
   font-size: 3rem;
@@ -39,23 +38,16 @@ h1
 #carousel_pano
 {
   position: absolute;
-  top: 6rem;
+  top: 7rem;
   width: 100%;
+  height: auto;
 }
-
-.marge
+.slide img
 {
-  margin: 1rem;
-}
-#overlay
-{
-  z-index: 3;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 500px;
-  background-color: rgba(100,100,100,0.5);
-  overflow-x: hidden;
+  width: 800px;
+  height: auto;
+  margin: 2rem 1rem 2rem 30rem;
+  box-shadow:  10px 10px 10px #3232321a;
 }
 
 
@@ -68,10 +60,7 @@ h1
 .carousel_item
 {
   float: left;
-  width: 22rem;
-  height: 22rem;
-
-  background-color: green;
+  height: auto;
 }
 
 .carousel_container {
@@ -89,14 +78,14 @@ h1
 {
   position: absolute;
   z-index: 4;
-  width: 40px;
-  height: 40px;
-  background-color: #000;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(100, 100, 100, 0.7);
   background-size: 20px 20px;
   border-radius: 50%;
   top: 50%;
-  margin-top: -20px;
-  right: 20px;
+  margin-top: -30px;
+  right: -30px;
   box-shadow: 0 15px 35px #3232321a, 0 5px 15px #0000001a;
   cursor: pointer;
   transition: 0.3s;
@@ -108,7 +97,7 @@ h1
 .carousel_prev
 {
   right: auto;
-  left: 20px;
+  left: -30px;
 }
 .carousel_prev-hidden, .carousel_next-hidden
 {
@@ -131,7 +120,8 @@ h1
   height: 10px;
   border-radius: 50%;
   display: inline-block;
-  margin: 0 3px;
+  margin: 0 4px;
+  background-color: lightgreen;
   box-shadow: 0 2px 5px #3232321a;
   transition: transform 0.3s;
   cursor: pointer;
@@ -140,6 +130,7 @@ h1
 .caroussel_pagination_button-active, .caroussel_pagination_button:hover
 {
   transform: scale(1.4);
+  background-color: green;
 }
 /* Style section */
 
@@ -154,51 +145,66 @@ section
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
-#map
+#map_velo
 {
-  width: 50rem;
-  height: 20rem;
-  margin-top: 2rem;
-  background-color: orange;
+  width: 60rem;
+  height: 30rem;
+  margin: 2rem 20rem 2rem 0rem;
+  box-shadow: 10px 10px 10px darkgrey;
 }
 
 fieldset
 {
   width: 20rem;
-  height: 15rem;
+  height: fit-content;
   box-sizing: border-box;
-  margin-top: 2rem;
+  margin: 6rem 6rem 2rem 0;
   background-color: white;
   border: 2px solid lightgrey;
   border-radius: 8px;
-  box-shadow: 4px 4px 4px darkgrey;
+  box-shadow: 7px 7px 7px darkgrey;
 }
 
 legend
 {
   padding: 2px 3px 2px 3px;
   background-color: inherit;
+  font-weight: 600;
 }
 
-#nom
+.info_form
 {
-  margin-left: 1rem;
+  display: none;
 }
-#prenom
+#selection
 {
-  margin-top: 1rem;
+  margin: 1rem 1rem 2rem 1rem;
+  font-weight: 600;
 }
 
-#resa_submit
+
+
+#reservation
 {
   margin: 1rem 4rem 1rem 7rem;
 }
 
-
-#resa
+#help_resa
 {
+  display: none;
+  width: 18rem;
+  height: fit-content;
+  padding: 0.5rem;
+  border : 1px solid grey;
+  border-radius: 8px 8px 0 8px;
+  box-shadow: 7px 7px 7px darkgrey;
+  text-align: center;
+}
+
+#resa_recap
+{
+  display: none;
   text-align: center;
   font-size: 1.5rem;
 }
@@ -208,6 +214,10 @@ legend
 
 @media only screen and (max-width: 600px)
 {
+  header
+  {
+    height: 21rem;
+  }
   h1
   {
     top: 1.5rem;
@@ -225,8 +235,12 @@ legend
   }
 }
 
-@media only screen and (max-width: 768px)
+@media only screen and (min-width: 600px) and (max-width: 768px)
 {
+  header
+  {
+    height: 40rem;
+  }
   h1
   {
     top: 1.5rem;
@@ -244,18 +258,36 @@ legend
   }
 }
 
-@media only screen and (max-width: 992px)
+@media only screen and (min-width: 768px) and (max-width: 992px)
 {
+  header
+  {
+    height: 48rem;
+  }
   h1
   {
-    top: 1rem;
     left: 20rem;
     font-size: 2.5rem;
   }
+  .slide img
+  {
+    width: 600px;
+    height: auto;
+    margin: 2rem 1rem 2rem 11rem;
+    box-shadow:  10px 10px 10px #3232321a;
+  }
+  #map_velo
+  {
+    width: 25rem;
+    height: 20rem;
+    margin: 2rem 5rem 2rem 0rem;
+  }
+
   fieldset
   {
     width: 18rem;
     height: 15rem;
+    margin: 5rem 3rem 2rem 0;
   }
   #resa_submit
   {

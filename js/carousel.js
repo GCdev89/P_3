@@ -52,7 +52,7 @@ class Carousel {
     this.onWindowresize();
     this.defilAuto();
     window.addEventListener('resize', this.onWindowresize.bind(this));
-    this.root.addEventListener("keyup", (e) => {
+    document.addEventListener("keyup", (e) => {
       if (e.key === "ArrowRight" || e.key === "Right") {
         this.next();
       } else if (e.key === "ArrowLeft" || e.key === "Left") {
@@ -111,7 +111,7 @@ class Carousel {
       buttons.push(button);
     }
     this.onMove(index => {
-      let activeButton = buttons[Math.floor(index / this.slidesToScroll)];
+      let activeButton = buttons[Math.floor(index / this.options.slidesToScroll)];
       if (activeButton) {
         buttons.forEach(button => button.classList.remove("caroussel_pagination_button-active"));
         activeButton.classList.add("caroussel_pagination_button-active");
@@ -221,8 +221,8 @@ class Carousel {
 let onReady = function () {
 
   new Carousel(document.getElementById("carousel_pano"), {
-    slidesToScroll: 2,
-    slidesVisible: 3,
+    slidesToScroll: 1,
+    slidesVisible: 1,
     loop: true,
     pagination: true
   });
