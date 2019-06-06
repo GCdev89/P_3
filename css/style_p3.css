@@ -154,6 +154,7 @@ section
   box-shadow: 10px 10px 10px darkgrey;
 }
 
+
 fieldset
 {
   width: 20rem;
@@ -204,9 +205,20 @@ legend
 
 #resa_recap
 {
-  display: none;
+  width: 30rem;
+  height: fit-content;
+  align-items: center;
+  margin: 2rem auto 2rem auto;
+  border : 1px solid grey;
+  border-radius: 8px;
+  box-shadow: 7px 7px 7px darkgrey;
   text-align: center;
   font-size: 1.5rem;
+}
+
+#resa_complete
+{
+  display: none;
 }
 
 

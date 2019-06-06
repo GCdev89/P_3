@@ -6,9 +6,10 @@ var MapLyon = {
   veloDispoElt: document.getElementById("velo_dispo"),
   userNameElt: document.getElementById("nom"),
   userForNameElt: document.getElementById("prenom"),
+  formElt: document.querySelector("form"),
   latElt: 45.75,
   lngElt: 4.825,
-  regexElt: /^[a-zA-Z][a-zA-Z]+$/,
+  regexElt: /^[a-zA-ZéêëïËÊÏ][a-zA-ZéêëïËÊÏ\-]+$/,
 
   init () {
     /*
@@ -27,11 +28,43 @@ var MapLyon = {
       var stations = JSON.parse(reponse);
       var toggleForm = document.getElementsByClassName("info_form");
 
+
       /*
-      * Gestion des markers
+      * Gestion des informations liées aux stations
       */
       stations.forEach(function (station) {
-        var markers = L.marker([station.position.lat, station.position.lng]).addTo(myMap);
+        /*
+        * Création des icones avec gestion du statut de la station
+        */
+        var LeafIcon = L.Icon.extend({
+          options: {
+            iconSize: [30,40],
+            iconAnchor: [30,40],
+            popupAnchor: [-15,-40]
+          }
+        });
+        var greenIcon = new LeafIcon({iconUrl: "../images/1x/icon_green.png"}),
+            orangeIcon = new LeafIcon({iconUrl: "../images/1x/icon_orange.png"}),
+            redIcon = new LeafIcon({iconUrl: "../images/1x/icon_red.png"}),
+            greyIcon = new LeafIcon({iconUrl: "../images/1x/icon_gray.png"});
+
+        var iconStatus = ""; // Valeur de retour
+        /*
+        * Gestion des statut, et renvoie la valeur retour
+        */
+        if (station.status === "OPEN") {
+          if (station.available_bikes === 0) {
+            iconStatus = redIcon;
+          } else if (station.available_bikes <= 3) {
+            iconStatus = orangeIcon;
+          } else if (station.available_bikes > 3) {
+            iconStatus = greenIcon;
+          }
+        } else {
+          iconStatus = greyIcon
+        }
+
+        var markers = L.marker([station.position.lat, station.position.lng], {icon: iconStatus}).addTo(myMap); // Implante les markers en fonction de leur statut
         markers.bindPopup("<b>" + station.name + "</b><br>" + station.address); // Attache un popup à chaque marker avec le station.name et le station.address
         markers.addEventListener("click", function(marker) { // Remplissage du formulaire si vélo à la station choisie
           if (station.available_bikes > 0) {  // Affiche le formulaire de réservation
@@ -50,24 +83,36 @@ var MapLyon = {
             document.getElementById("selection").style.display = "block";
           }
         });
-        var formElt = document.querySelector("form");
-        formElt.addEventListener("submit", function (e) {
-          if ((MapLyon.regexElt.test(formElt.elements.nom.value)) && (MapLyon.regexElt.test(formElt.elements.prenom.value))) {
-            document.getElementById("resa_recap").style.display = "block";
-            document.getElementById("resa_station").textContent = MapLyon.stationNameElt.textContent;
-            document.getElementById("resa_name").textContent = formElt.elements.nom.value + " " + formElt.elements.prenom.value;
-            document.getElementById("help_resa").style.display = "none";
+        MapLyon.formElt.addEventListener("submit", function (e) {
+          if ((MapLyon.regexElt.test(MapLyon.formElt.elements.nom.value)) && (MapLyon.regexElt.test(MapLyon.formElt.elements.prenom.value))) {
+            MapLyon.register();
+            Timer.initTimer();
           } else {
-            document.getElementById("help_resa").style.display = "block";
-            document.getElementById("resa_recap").style.display = "none";
-            document.getElementById("resa_station").textContent = "";
-            document.getElementById("resa_name").textContent = "";
+            MapLyon.registerFalse();
           }
           e.preventDefault();
         });
       });
     });
-  }
+  },
+
+  /*
+  *Fonctions affichant et masquant les zones de réservation
+  */
+  register() {
+    document.getElementById("resa_complete").style.display = "block";
+    document.getElementById("resa_over").style.display = "none";
+    document.getElementById("resa_station").textContent = MapLyon.stationNameElt.textContent;
+    document.getElementById("resa_name").textContent = MapLyon.formElt.elements.nom.value + " " + MapLyon.formElt.elements.prenom.value;
+    document.getElementById("help_resa").style.display = "none";
+  },
+  registerFalse() {
+    document.getElementById("help_resa").style.display = "block";
+    document.getElementById("resa_complete").style.display = "none";
+    document.getElementById("resa_over").style.display = "block";
+    document.getElementById("resa_station").textContent = "";
+    document.getElementById("resa_name").textContent = "";
+  },
 }
 
 
