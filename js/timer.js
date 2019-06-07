@@ -2,7 +2,7 @@ var Timer = {
   timeElt: 20, // Temps restant en minutes
 
   initTimer() {
-    var timeMs = (this.timeElt * 60 * 1000) + 2000; // Ajout de 2 secondes pour prendre en compte le délai d'activation du timer.
+    var timeMs = (this.timeElt * 60 * 1000) + 1000; // Ajout de 1 seconde pour prendre en compte le délai d'activation du timer.
     var now = new Date().getTime(); // Recherche la date en ms à l'init
     var timeTo = now + timeMs; // Donne la durée en ms que l'on veut atteindre
 
