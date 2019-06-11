@@ -11,6 +11,7 @@ var MapLyon = {
   lngElt: 4.825,
   regexElt: /^[a-zA-ZéêëïËÊÏ][a-zA-ZéêëïËÊÏ\-]+$/,
 
+
   init () {
     /*
     *Affichage de la carte et du tile layer
@@ -18,17 +19,18 @@ var MapLyon = {
     var myMap = L.map("map_velo").setView([this.latElt, this.lngElt], 13.5);
     L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
                         // Il est toujours bien de laisser le lien vers la source des données
-                        attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
-                        minZoom: 12,
-                        maxZoom: 20
-                    }).addTo(myMap);
+        attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+        minZoom: 12,
+        maxZoom: 20
+    }).addTo(myMap);
+
+    var reservationNom;
+    var reservationPrenom;
     // Appel ajax des données de JC. Decaux
     ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=lyon&apiKey=ec0b0c27fce8658ab74b43deabc9f4155809d60c", function (reponse) {
       // Transforme la réponse en tableau d'objets JS
       var stations = JSON.parse(reponse);
       var toggleForm = document.getElementsByClassName("info_form");
-
-
       /*
       * Gestion des informations liées aux stations
       */
@@ -73,6 +75,7 @@ var MapLyon = {
             }
             document.getElementById("selection").style.display = "none";
             MapLyon.stationNameElt.textContent = station.name;
+            window.sessionStorage.setItem("veloLyonStationName", station.name); // Enregistrement en session de la station réservée
             MapLyon.stationAddressElt.textContent = station.address;
             MapLyon.stationPlacesElt.textContent = station.available_bike_stands;
             MapLyon.veloDispoElt.textContent = station.available_bikes;
@@ -83,41 +86,65 @@ var MapLyon = {
             document.getElementById("selection").style.display = "block";
           }
         });
-        MapLyon.formElt.addEventListener("submit", function (e) {
-          if ((MapLyon.regexElt.test(MapLyon.formElt.elements.nom.value)) && (MapLyon.regexElt.test(MapLyon.formElt.elements.prenom.value))) {
-            MapLyon.register();
-            Timer.initTimer();
-          } else {
-            MapLyon.registerFalse();
-          }
-          e.preventDefault();
-        });
       });
+      MapLyon.formElt.addEventListener("submit", function (e) {
+        if ((MapLyon.regexElt.test(MapLyon.formElt.elements.nom.value)) && (MapLyon.regexElt.test(MapLyon.formElt.elements.prenom.value))) {
+          register();
+          Timer.initTimer();
+        } else {
+          registerFalse();
+        }
+        e.preventDefault();
+      });
+      restoreSession();
     });
-  },
+    function register() {
+      reservationStation = MapLyon.stationNameElt.textContent;
+      reservationNom = MapLyon.formElt.elements.nom.value;
+      reservationPrenom = MapLyon.formElt.elements.prenom.value;
 
-  /*
-  *Fonctions affichant et masquant les zones de réservation
-  */
-  register() {
-    document.getElementById("resa_complete").style.display = "block";
-    document.getElementById("resa_over").style.display = "none";
-    document.getElementById("resa_station").textContent = MapLyon.stationNameElt.textContent;
-    document.getElementById("resa_name").textContent = MapLyon.formElt.elements.nom.value + " " + MapLyon.formElt.elements.prenom.value;
-    document.getElementById("help_resa").style.display = "none";
-  },
-  registerFalse() {
-    document.getElementById("help_resa").style.display = "block";
-    document.getElementById("resa_complete").style.display = "none";
-    document.getElementById("resa_over").style.display = "block";
-    document.getElementById("resa_station").textContent = "";
-    document.getElementById("resa_name").textContent = "";
-  },
+      // Mise en forme de la page
+      document.getElementById("resa_complete").style.display = "block";
+      document.getElementById("resa_over").style.display = "none";
+      document.getElementById("resa_station").textContent = reservationStation;
+      document.getElementById("resa_name").textContent = reservationNom + " " + reservationPrenom;
+      document.getElementById("help_resa").style.display = "none";
+
+      /*
+      * Gestion du stockage
+      */
+      window.sessionStorage.setItem("resaOn", true); // Enregistrement en session de la station réservée
+      window.localStorage.setItem("veloLyonNomValue", reservationNom); // Enregistrement en local du nom
+      window.localStorage.setItem("veloLyonPrenomValue", reservationPrenom); // Enregistrement en local du prénom
+    }
+    function registerFalse() {
+      document.getElementById("help_resa").style.display = "block";
+      document.getElementById("resa_complete").style.display = "none";
+      document.getElementById("resa_over").style.display = "block";
+      document.getElementById("resa_station").textContent = "";
+      document.getElementById("resa_name").textContent = "";
+    }
+    function restoreSession() {
+      var getNom = window.localStorage.getItem(reservationNom);
+      var getPrenom = window.localStorage.getItem(reservationPrenom);
+      var getEtatResa = window.sessionStorage.getItem("resaOn");
+      var getSavedStation = window.sessionStorage.getItem("veloLyonStationName");
+      console.log(getEtatResa);
+      if (getEtatResa) {
+        console.log("restoreTest");
+        register();
+        document.getElementById("resa_station").textContent = getSavedStation;
+        Timer.initTimer();
+        console.log(getSavedStation);
+      }
+    }
+  }
 }
 
 
 let onReady_2 = function () {
   MapLyon.init();
+
 }
 if (document.readyState !== "loading") {
   onReady_2();
