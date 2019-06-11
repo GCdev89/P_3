@@ -130,7 +130,7 @@ var MapLyon = {
       var getEtatResa = window.sessionStorage.getItem("resaOn");
       var getSavedStation = window.sessionStorage.getItem("veloLyonStationName");
       console.log(getEtatResa);
-      if (getEtatResa) {
+      if (getEtatResa === "true") {
         console.log("restoreTest");
         register();
         document.getElementById("resa_station").textContent = getSavedStation;
