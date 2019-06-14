@@ -70,15 +70,20 @@ var MapLyon = {
         markers.bindPopup("<b>" + station.name + "</b><br>" + station.address); // Attache un popup à chaque marker avec le station.name et le station.address
         markers.addEventListener("click", function(marker) { // Remplissage du formulaire si vélo à la station choisie
           if (station.available_bikes > 0) {  // Affiche le formulaire de réservation
+
             for (i = 0; i < toggleForm.length; i++) {
               toggleForm[i].style.display = "block";
             }
+            var getNom = window.localStorage.getItem("veloLyonNomValue");
+            var getPrenom = window.localStorage.getItem("veloLyonPrenomValue");
             document.getElementById("selection").style.display = "none";
             MapLyon.stationNameElt.textContent = station.name;
             window.sessionStorage.setItem("veloLyonStationName", station.name); // Enregistrement en session de la station réservée
             MapLyon.stationAddressElt.textContent = station.address;
             MapLyon.stationPlacesElt.textContent = station.available_bike_stands;
             MapLyon.veloDispoElt.textContent = station.available_bikes;
+            MapLyon.formElt.elements.nom.value = getNom;
+            MapLyon.formElt.elements.prenom.value = getPrenom;
           } else {  // Affiche la demande de séléction de station
             for (i = 0; i < toggleForm.length; i++) {
               toggleForm[i].style.display = "none";
@@ -125,17 +130,12 @@ var MapLyon = {
       document.getElementById("resa_name").textContent = "";
     }
     function restoreSession() {
-      var getNom = window.localStorage.getItem(reservationNom);
-      var getPrenom = window.localStorage.getItem(reservationPrenom);
       var getEtatResa = window.sessionStorage.getItem("resaOn");
       var getSavedStation = window.sessionStorage.getItem("veloLyonStationName");
-      console.log(getEtatResa);
       if (getEtatResa === "true") {
-        console.log("restoreTest");
         register();
         document.getElementById("resa_station").textContent = getSavedStation;
         Timer.initTimer();
-        console.log(getSavedStation);
       }
     }
   }

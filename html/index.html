@@ -5,6 +5,7 @@
     <head>
 
         <meta charset="utf-8" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin=""/>
@@ -20,60 +21,81 @@
 
 
     <body>
-      <div id="bloc_page">
-        <header>
-          <h1>Réservation de vélo</h1>
-          <div id="carousel_pano">
-            <div class="slide"><img src="../images/carousel_p3/1.jpg" /></div>
-            <div class="slide"><img src="../images/carousel_p3/2.jpg" /></div>
-            <div class="slide"><img src="../images/carousel_p3/3.jpg" /></div>
-            <div class="slide"><img src="../images/carousel_p3/4.jpg" /></div>
-            <div class="slide"><img src="../images/carousel_p3/5.jpg" /></div>
-            <div class="slide"><img src="../images/carousel_p3/6.jpg" /></div>
-          </div>
 
+      <div class="container-fluid">
+        <header>
+          <div class="row">
+
+            <h1 id="titre" class="page-header">Réservation de vélo</h1>
+
+          </div>
+          <div class="row">
+            <div id="carousel_pano" class="col-lg-12">
+                <div class="slide"><img src="../images/carousel_p3/1.jpg" /></div>
+                <div class="slide"><img src="../images/carousel_p3/2.jpg" /></div>
+                <div class="slide"><img src="../images/carousel_p3/3.jpg" /></div>
+                <div class="slide"><img src="../images/carousel_p3/4.jpg" /></div>
+                <div class="slide"><img src="../images/carousel_p3/5.jpg" /></div>
+                <div class="slide"><img src="../images/carousel_p3/6.jpg" /></div>
+              </div>
+          </div>
         </header>
 
         <section>
-          <div id="container_section">
-            <div id="map_velo">
+          <div id="container_section" class"row">
+            <div class="row">
+              <div id="map_velo" class="col-md-offset-1 col-md-5">
 
+              </div>
+              <div class="col-md-offset-2 col-md-2">
+                <div class="row">
+                  <div class="row">
+                    <form class="col-md-12">
+                      <fieldset>
+                        <legend>
+                          Détail de la station
+                        </legend>
+                        <p class="info_form">Nom de la station : <span id="nom_station"></span></p>
+                        <p class="info_form">Adresse : <span id="adresse_station"></span></p>
+                        <p class="info_form"><spans id="places_station"></spans> places</spans></br>
+                        <span id ="velo_dispo"></span> vélos disponnibles</p>
+                        <label for="nom" class="info_form">Nom :</label>
+                        <input type="text" name="nom" id="nom" class="info_form" required /><br />
+                        <label for="prenom" class="info_form">Prénom :</label>
+                        <input type="text" name="prenom" id="prenom" class="info_form" required />
+                        <input type="submit" value="Réserver" id="reservation" class="info_form" />
+                        <p id="selection">Veuillez sélectionner une station sur la carte.</p>
+                      </fieldset>
+                    </form>
+                  </div>
+                  <div class="row">
+                    <p id="help_resa" clas="col-md-12">Veuillez renseigner un nom et un prénom valide</p>
+                    <canvas id="canvas">Canvas</canvas>
+                  </div>
+
+                </div>
+              </div>
             </div>
 
-            <form>
-              <fieldset>
-                <legend>
-                  Détail de la station
-                </legend>
-                <p class="info_form">Nom de la station : <span id="nom_station"></span></p>
-                <p class="info_form">Adresse : <span id="adresse_station"></span></p>
-                <p class="info_form"><spans id="places_station"></spans> places</spans></br>
-                <span id ="velo_dispo"></span> vélos disponnibles</p>
-                <label for="nom" class="info_form">Nom :</label>
-                <input type="text" name="nom" id="nom" class="info_form" required /><br />
-                <label for="prenom" class="info_form">Prénom :</label>
-                <input type="text" name="prenom" id="prenom" class="info_form" required />
-                <input type="submit" value="Réserver" id="reservation" class="info_form" />
-                <p id="selection">Veuillez sélectionner une station sur la carte.</p>
-              </fieldset>
-              <p id="help_resa">Veuillez renseigner un nom et un prénom valide</p>
-            </form>
           </div>
-          <div id="resa_recap">
-            <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span></br>
-            Temps restant : <span id="resa_temps"></span></p>
-            <p id="resa_over">Vous n'avez pas de réservation en cours.</p>
+          <div class="row">
+            <div id="resa_recap" class="col-md-offset-4 col-lg-4">
+              <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span></br>
+              Temps restant : <span id="resa_temps"></span></p>
+              <p id="resa_over">Vous n'avez pas de réservation en cours.</p>
+            </div>
           </div>
         </section>
+      </div>
 
-        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+
+      <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
            integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
            crossorigin=""></script>
-        <script src="../js/ajax.js"></script>
-        <script src="../js/timer.js"></script>
-        <script src="../js/map_velo.js"></script>
+      <script src="../js/ajax.js"></script>
+      <script src="../js/timer.js"></script>
+      <script src="../js/map_velo.js"></script>
 
-      </div>
     </body>
 
 </html>

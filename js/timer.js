@@ -1,19 +1,14 @@
 var Timer = {
   timeElt: 20, // Temps restant en minutes
-  now: new Date().getTime(),
 
   initTimer() {
     var timeMs = (this.timeElt * 60 * 1000) + 1000; // Ajout de 1 seconde pour prendre en compte le délai d'activation du timer.
-    //var now = new Date().getTime(),
+    var now = new Date().getTime();
      // Recherche la date en ms à l'init
-    var timeTo = this.now + timeMs; // Donne la durée en ms que l'on veut atteindre
+    var timeTo = now + timeMs; // Donne la durée en ms que l'on veut atteindre
     var getSavedTimeTo = window.sessionStorage.getItem("savedTimeTo");
-    console.log(getSavedTimeTo + "gstt");
-    console.log(timeTo + "tt");
-    if ( getSavedTimeTo < timeTo && getSavedTimeTo > this.now) {
+    if ( getSavedTimeTo < timeTo && getSavedTimeTo > now) {
       timeTo = getSavedTimeTo;
-      console.log(timeTo + "tT");
-      console.log(getSavedTimeTo);
     }
     window.sessionStorage.setItem("savedTimeTo", timeTo);
     var intervalCountDown = setInterval( function() {
@@ -23,7 +18,6 @@ var Timer = {
       var minutes = Math.floor((distance % (1000 *60 *60)) / (1000 *60)); // Convertit le temps en minutes
       var secondes = Math.floor((distance % (1000 * 60)) / 1000); // Convertit le temps en secondes
       document.getElementById("resa_temps").textContent = minutes + " minutes " + secondes + " secondes.";
-      window.sessionStorage.setItem("timeLeft", distance);
       if (distance < 0 ) {
         clearInterval(intervalCountDown);
         registerOver();
