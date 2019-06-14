@@ -106,18 +106,22 @@ var MapLyon = {
       });
       restoreSession();
     });
+
+    document.getElementById("annulation").addEventListener("click", cancel)
+
     function register() {
       reservationStation = MapLyon.stationNameElt.textContent;
       reservationNom = MapLyon.formElt.elements.nom.value;
       reservationPrenom = MapLyon.formElt.elements.prenom.value;
-
-      // Mise en forme de la page
+      /*
+      * Mise en forme de la page
+      */
       document.getElementById("resa_complete").style.display = "block";
+      document.getElementById("annulation").style.display = "block";
       document.getElementById("resa_over").style.display = "none";
       document.getElementById("resa_station").textContent = reservationStation;
       document.getElementById("resa_name").textContent = reservationNom + " " + reservationPrenom;
       document.getElementById("help_resa").style.display = "none";
-
       /*
       * Gestion du stockage
       */
@@ -131,6 +135,14 @@ var MapLyon = {
       document.getElementById("resa_over").style.display = "block";
       document.getElementById("resa_station").textContent = "";
       document.getElementById("resa_name").textContent = "";
+    }
+    function cancel() {
+      document.getElementById("resa_complete").style.display = "none";
+      document.getElementById("annulation").style.display = "none";
+      document.getElementById("resa_over").style.display = "block";
+      document.getElementById("resa_station").textContent = "";
+      document.getElementById("resa_name").textContent = "";
+      window.sessionStorage.clear();
     }
     function restoreSession() {
       var getEtatResa = window.sessionStorage.getItem("resaOn");

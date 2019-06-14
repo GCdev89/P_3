@@ -166,15 +166,37 @@ legend
   text-align: center;
 }
 
+footer
+{
+  margin-top: 80px;
+  margin-bottom: 400px;
+}
 #resa_recap
 {
-  margin-top: 40px;
-  margin-bottom: 400px;
   border : 2px solid lightgrey;
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
   font-size: 2rem;
   text-align: center;
+}
+#annulation
+{
+  display: none;
+  margin-left: 30px;
+  margin-top: 10px;
+  padding: 10px 0 10px 0;
+  background-color: orange;
+  border : 2px solid darkgrey;
+  border-radius: 8px;
+  box-shadow: 7px 7px 7px darkgrey;
+  font-size: 2rem;
+  text-align: center;
+  transition: transform 0.3s;
+}
+#annulation:hover
+{
+  transform: scale(1.2);
+  background-color: red;
 }
 
 #resa_complete
