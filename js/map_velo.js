@@ -16,7 +16,7 @@ var MapLyon = {
     /*
     *Affichage de la carte et du tile layer
     */
-    var myMap = L.map("map_velo").setView([this.latElt, this.lngElt], 13.5);
+    var myMap = L.map("map_velo").setView([this.latElt, this.lngElt], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
                         // Il est toujours bien de laisser le lien vers la source des données
         attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
@@ -31,6 +31,8 @@ var MapLyon = {
       // Transforme la réponse en tableau d'objets JS
       var stations = JSON.parse(reponse);
       var toggleForm = document.getElementsByClassName("info_form");
+      var clusters = new L.markerClusterGroup();
+
       /*
       * Gestion des informations liées aux stations
       */
@@ -65,12 +67,12 @@ var MapLyon = {
         } else {
           iconStatus = greyIcon
         }
-
-        var markers = L.marker([station.position.lat, station.position.lng], {icon: iconStatus}).addTo(myMap); // Implante les markers en fonction de leur statut
+        var markers = L.marker([station.position.lat, station.position.lng], {icon: iconStatus}); // Implante les markers en fonction de leur statut
         markers.bindPopup("<b>" + station.name + "</b><br>" + station.address); // Attache un popup à chaque marker avec le station.name et le station.address
+        clusters.addLayer(markers); // Ajout des markers au cluster
+
         markers.addEventListener("click", function(marker) { // Remplissage du formulaire si vélo à la station choisie
           if (station.available_bikes > 0) {  // Affiche le formulaire de réservation
-
             for (i = 0; i < toggleForm.length; i++) {
               toggleForm[i].style.display = "block";
             }
@@ -91,6 +93,7 @@ var MapLyon = {
             document.getElementById("selection").style.display = "block";
           }
         });
+        myMap.addLayer(clusters); // Affiche les markers dans les cluster
       });
       MapLyon.formElt.addEventListener("submit", function (e) {
         if ((MapLyon.regexElt.test(MapLyon.formElt.elements.nom.value)) && (MapLyon.regexElt.test(MapLyon.formElt.elements.prenom.value))) {
