@@ -29,9 +29,21 @@ var Timer = {
       document.getElementById("resa_over").style.display = "block";
       document.getElementById("resa_station").textContent = "";
       document.getElementById("resa_name").textContent = "";
+      document.getElementById("annulation").style.display = "none";
       etatResa = false;
       window.sessionStorage.setItem("resaOn", etatResa);
-
     }
+
+    var cancel = document.getElementById("annulation").addEventListener("click", function() {
+      document.getElementById("resa_complete").style.display = "none";
+      document.getElementById("annulation").style.display = "none";
+      document.getElementById("resa_over").style.display = "block";
+      document.getElementById("resa_station").textContent = "";
+      document.getElementById("resa_name").textContent = "";
+      document.getElementById("resa_temps").textContent = "";
+      window.sessionStorage.clear();
+      clearInterval(intervalCountDown);
+      Canvas.clearCanvas();
+    })
   }
 }

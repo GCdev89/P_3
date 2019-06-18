@@ -8,6 +8,7 @@
 .page-header
 {
   margin: 40px 100px 20px;
+  border-bottom: 2px solid #BADA55;
 }
 
 
@@ -96,7 +97,7 @@
   border-radius: 50%;
   display: inline-block;
   margin: 0 4px;
-  background-color: lightgreen;
+  background-color: #BADA55;
   box-shadow: 0 2px 5px #3232321a;
   transition: transform 0.3s;
   cursor: pointer;
@@ -127,15 +128,18 @@ fieldset
   height: fit-content;
   box-sizing: border-box;
   padding-left: 10px;
+  padding-right: 5px;
   background-color: white;
-  border: 2px solid lightgrey;
+  border: 2px solid #BADA55;
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
 }
 
 legend
 {
-  padding-left: 10px;
+  padding-left: 55px;
+  border-radius: 25%;
+  border-bottom: 1px solid #BADA55;
 }
 
 .info_form
@@ -158,9 +162,11 @@ legend
 #help_resa
 {
   display: none;
-  height: 40px;
-  padding: 0.5rem;
-  border : 1px solid grey;
+  height: 60px;
+  margin-top: 20px;
+  padding: 8px;
+  background-color: orange;
+  border : 1px solid #BADA55;
   border-radius: 8px 8px 0 8px;
   box-shadow: 7px 7px 7px darkgrey;
   text-align: center;
@@ -173,7 +179,7 @@ footer
 }
 #resa_recap
 {
-  border : 2px solid lightgrey;
+  border : 2px solid #BADA55;
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
   font-size: 2rem;
@@ -186,17 +192,20 @@ footer
   margin-top: 10px;
   padding: 10px 0 10px 0;
   background-color: orange;
-  border : 2px solid darkgrey;
+  border : 2px solid #BADA55;
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
   font-size: 2rem;
   text-align: center;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 #annulation:hover
 {
   transform: scale(1.2);
   background-color: red;
+  box-shadow: 10px 8px 8px darkgrey;
+  color: white;
 }
 
 #resa_complete
@@ -204,15 +213,85 @@ footer
   display: none;
 }
 
-#canvas
+
+#canvas_container
 {
   display: none;
-  height: 150px;
+}
+#canvas
+{
   width: 300px;
+  height: 150px;
+  margin-top: 20px;
+  margin-left: 25px;
   border: 1px solid black;
   box-shadow: 7px 7px 7px darkgrey;
 }
 
+#box_boutons
+{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+
+#valider_canvas, #effacer_canvas
+{
+  height: 30px;
+  padding-top: 4px;
+  text-align: center;
+  border : 2px solid #BADA55;
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px darkgrey;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+#valider_canvas
+{
+  background-color: lightgreen;
+}
+
+#valider_canvas:hover
+{
+  background-color: green;
+  color: white;
+  transform: scale(1.2);
+}
+
+#effacer_canvas
+{
+  background-color: rgb(100, 100, 100);
+  color: white;
+}
+#effacer_canvas:hover
+{
+  background-color: black;
+  color: white;
+  transform: scale(1.2);
+}
+
+#annuler_validation
+{
+  height: 30px;
+  margin-top: 20px;
+  padding-top: 4px;
+  text-align: center;
+  background-color: orange;
+  border : 2px solid #BADA55;
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px darkgrey;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+#annuler_validation:hover
+{
+  transform: scale(1.2);
+  background-color: red;
+  box-shadow: 10px 8px 8px darkgrey;
+  color: white;
+}
 /* Définition media queries */
 
 @media only screen and (max-width: 600px)

@@ -72,15 +72,25 @@
                     </form>
                   </div>
                   <div class="row">
-                    <p id="help_resa" clas="col-md-12">Veuillez renseigner un nom et un prénom valide</p>
-                    <canvas id="canvas">Canvas</canvas>
+                    <p id="help_resa" clas="col-md-12">Veuillez renseigner un nom et un prénom valide. Ou bien merci de signer le formulaire.</p>
+                    <div id="canvas_container">
+                      <canvas id="canvas">Canvas</canvas>
+                      <div class="row">
+                        <div id="box_boutons">
+                          <p id="valider_canvas" class="col-md-3">Valider</p>
+                          <p id="effacer_canvas"class="col-md-offset-3 col-md-3">Effacer</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <p id="annuler_validation" class="col-md-offset-3 col-md-6">Annuler la réservation</p>
+                      </div>
+                    </div>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
+
           <footer class="row">
             <div id="resa_recap" class="col-md-offset-3 col-lg-4">
               <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span></br>
@@ -88,7 +98,7 @@
               <p id="resa_over">Vous n'avez pas de réservation en cours.</p>
             </div>
             <div id="annulation" class="col-sm-1">
-              Annuler la réservation
+              <p id="bouton_annul">Annuler la réservation</p>
             </div>
           </footer>
         </section>
@@ -100,6 +110,7 @@
            crossorigin=""></script>
       <script src="../js/ajax.js"></script>
       <script src="../Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
+      <script src="../js/canvas.js"></script>
       <script src="../js/timer.js"></script>
       <script src="../js/map_velo.js"></script>
 
