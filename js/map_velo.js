@@ -97,20 +97,26 @@ var MapLyon = {
       });
       MapLyon.formElt.addEventListener("submit", function(e) {
         if ((MapLyon.regexElt.test(MapLyon.formElt.elements.nom.value)) && (MapLyon.regexElt.test(MapLyon.formElt.elements.prenom.value))) {
-          Canvas.initCanvas();
-          window.scrollTo(0,950);
+          if (Timer.resaOn ) {
+            document.getElementById("help_resa").style.display = "block";
+          } else {
+            document.getElementById("help_resa").style.display = "none";
+            Canvas.clearCanvas();
+            Canvas.initCanvas();
+            window.scrollTo(0,1200);
+          }
         } else {
           registerFalse();
         }
         e.preventDefault();
       })
       document.getElementById("valider_canvas").addEventListener("click", function (e) {
-        if (Canvas.drawing) {
-          Canvas.validateCanvas();
+        if (Canvas.drawing ) {
           register();
-          Timer.initTimer();
+          Timer.resaOn = true;
+          window.sessionStorage.setItem("resaOn", Timer.resaOn); // Enregistrement en session de la station réservée
         } else {
-          registerFalse();
+          document.getElementById("help_resa").style.display = "block";
         }
       });
       document.getElementById("annuler_validation").addEventListener("click", function (e) {
@@ -120,6 +126,10 @@ var MapLyon = {
       });
       restoreSession();
     });
+    document.getElementById("annulation").addEventListener("click", function(){
+      Timer.cancel();
+      Timer.resaOn = false;
+    });
 
 
 
@@ -127,6 +137,11 @@ var MapLyon = {
       reservationStation = MapLyon.stationNameElt.textContent;
       reservationNom = MapLyon.formElt.elements.nom.value;
       reservationPrenom = MapLyon.formElt.elements.prenom.value;
+      /*
+      * Appel des fonctions
+      */
+      Canvas.validateCanvas();
+      Timer.initTimer();
       /*
       * Mise en forme de la page
       */
@@ -140,9 +155,9 @@ var MapLyon = {
       /*
       * Gestion du stockage
       */
-      window.sessionStorage.setItem("resaOn", true); // Enregistrement en session de la station réservée
       window.localStorage.setItem("veloLyonNomValue", reservationNom); // Enregistrement en local du nom
       window.localStorage.setItem("veloLyonPrenomValue", reservationPrenom); // Enregistrement en local du prénom
+
     }
     function registerFalse() {
       document.getElementById("help_resa").style.display = "block";
@@ -154,8 +169,9 @@ var MapLyon = {
 
     function restoreSession() {
       var getEtatResa = window.sessionStorage.getItem("resaOn");
+      Timer.resaOn = getEtatResa;
       var getSavedStation = window.sessionStorage.getItem("veloLyonStationName");
-      if (getEtatResa === "true") {
+      if (Timer.resaOn) {
         register();
         document.getElementById("resa_station").textContent = getSavedStation;
         Timer.initTimer();
@@ -167,7 +183,6 @@ var MapLyon = {
 
 let onReady_2 = function () {
   MapLyon.init();
-
 }
 if (document.readyState !== "loading") {
   onReady_2();

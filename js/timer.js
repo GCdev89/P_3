@@ -1,5 +1,8 @@
 var Timer = {
   timeElt: 20, // Temps restant en minutes
+  intervalCountDown: "",
+  resaOn: false,
+
 
   initTimer() {
     var timeMs = (this.timeElt * 60 * 1000) + 1000; // Ajout de 1 seconde pour prendre en compte le délai d'activation du timer.
@@ -11,7 +14,7 @@ var Timer = {
       timeTo = getSavedTimeTo;
     }
     window.sessionStorage.setItem("savedTimeTo", timeTo);
-    var intervalCountDown = setInterval( function() {
+    this.intervalCountDown = setInterval( function() {
       // Lance l'interval qui calculera le temps restant chaque secondes
       var nowInterval = new Date().getTime(); // Actualise la date en ms chaque seconde
       var distance = timeTo - nowInterval; // Calcule la distance en ms vers le point à atteindre
@@ -19,7 +22,7 @@ var Timer = {
       var secondes = Math.floor((distance % (1000 * 60)) / 1000); // Convertit le temps en secondes
       document.getElementById("resa_temps").textContent = minutes + " minutes " + secondes + " secondes.";
       if (distance < 0 ) {
-        clearInterval(intervalCountDown);
+        clearInterval(this.intervalCountDown);
         registerOver();
       }
     }, 1000);
@@ -29,21 +32,26 @@ var Timer = {
       document.getElementById("resa_over").style.display = "block";
       document.getElementById("resa_station").textContent = "";
       document.getElementById("resa_name").textContent = "";
+      document.getElementById("resa_temps").textContent = "";
       document.getElementById("annulation").style.display = "none";
-      etatResa = false;
-      window.sessionStorage.setItem("resaOn", etatResa);
+      Timer.resaOn = false;
+      clearInterval(Timer.intervalCountDown);
+      window.sessionStorage.clear();
     }
 
-    var cancel = document.getElementById("annulation").addEventListener("click", function() {
-      document.getElementById("resa_complete").style.display = "none";
-      document.getElementById("annulation").style.display = "none";
-      document.getElementById("resa_over").style.display = "block";
-      document.getElementById("resa_station").textContent = "";
-      document.getElementById("resa_name").textContent = "";
-      document.getElementById("resa_temps").textContent = "";
-      window.sessionStorage.clear();
-      clearInterval(intervalCountDown);
-      Canvas.clearCanvas();
-    })
-  }
+
+  },
+  cancel() {
+    document.getElementById("resa_complete").style.display = "none";
+    document.getElementById("annulation").style.display = "none";
+    document.getElementById("resa_over").style.display = "block";
+    document.getElementById("resa_station").textContent = "";
+    document.getElementById("resa_name").textContent = "";
+    document.getElementById("resa_temps").textContent = "";
+    window.sessionStorage.clear();
+    clearInterval(Timer.intervalCountDown);
+    Canvas.clearCanvas();
+  },
+
+
 }

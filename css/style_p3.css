@@ -1,35 +1,27 @@
-/* Définition du style de la page */
+/*
+* Définition du style de la page
+*/
 
 
+body
+{
+  background-color: #fcfbef;
+}
 
-/* Style slider */
-
+/*
+* Style slider
+*/
 
 .page-header
 {
-  margin: 40px 100px 20px;
-  border-bottom: 2px solid #BADA55;
+  margin: 0 100px 20px;
+  border-bottom: 2px solid #ff5757;
+  color: black;
 }
 
-
-
-/*.slide img
-{
-  width: 800px;
-  margin: 20px 0 30px 520px;
-  height: auto;
-  box-shadow:  10px 10px 10px #3232321a;
-}*/
-.slide img
-{
-  width: 50%;
-  height: auto;
-  margin: 20px 0 30px 450px;
-  box-shadow:  10px 10px 10px #3232321a;
-}
-
-
-/* Carousel */
+/*
+* Carousel
+*/
 .carousel{
   position: relative;
   overflow: hidden;
@@ -42,28 +34,39 @@
 }
 
 .carousel_container {
+  background-color: #fcfbef;
+
   transition: transform 0.3s;
   transform: translate3d(0, 0, 0);
 }
 
 .carousel_container::after
 {
+  background-color: #fcfbef;
   content: " ";
   clear: both;
   display: table;
 }
+.slide
+{
+  width: 70%;
+}
+.slide img
+{
+  height: auto;
+  margin-bottom: 45px;
+  border: 1px solid #3e5b43;
+  box-shadow:  10px 10px 10px #3232321a;
+}
 .carousel_next, .carousel_prev
 {
+  z-index: 2000;
   position: absolute;
-  width: 60px;
-  height: 60px;
-  background-color: rgba(100, 100, 100, 0.7);
-  background-size: 20px 20px;
-  border-radius: 50%;
+  width: 30px;
+  background-color: rgba(252, 251, 239, 0);
   top: 50%;
-  margin-top: -30px;
-  right: -30px;
-  box-shadow: 0 15px 35px #3232321a, 0 5px 15px #0000001a;
+  margin-top: -40px;
+  right: 40px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -71,10 +74,15 @@
 {
   transform: scale(1.2);
 }
+.fas
+{
+  font-size: 100px;
+  color: #3e5b43;
+}
 .carousel_prev
 {
   right: auto;
-  left: -30px;
+  left: 40px;
 }
 .carousel_prev-hidden, .carousel_next-hidden
 {
@@ -92,8 +100,8 @@
 
 .caroussel_pagination_button
 {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   display: inline-block;
   margin: 0 4px;
@@ -106,15 +114,12 @@
 .caroussel_pagination_button-active, .caroussel_pagination_button:hover
 {
   transform: scale(1.4);
-  background-color: green;
-}
-/* Style section */
-
-section
-{
-  margin-top: 50px;
+  background-color: #3e5b43;
 }
 
+/*
+* Style section
+*/
 
 #map_velo
 {
@@ -122,14 +127,10 @@ section
   box-shadow: 10px 10px 10px darkgrey;
 }
 
-
 fieldset
 {
   height: fit-content;
-  box-sizing: border-box;
-  padding-left: 10px;
-  padding-right: 5px;
-  background-color: white;
+  background-color: #fcfbef;
   border: 2px solid #BADA55;
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
@@ -137,7 +138,7 @@ fieldset
 
 legend
 {
-  padding-left: 55px;
+
   border-radius: 25%;
   border-bottom: 1px solid #BADA55;
 }
@@ -146,25 +147,17 @@ legend
 {
   display: none;
 }
-#selection
-{
-  margin: 0 2rem 2rem 2rem;
-  font-weight: 600;
-}
-
-
 
 #reservation
 {
-  margin: 1rem 4rem 1rem 7rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 #help_resa
 {
   display: none;
-  height: 60px;
   margin-top: 20px;
-  padding: 8px;
   background-color: orange;
   border : 1px solid #BADA55;
   border-radius: 8px 8px 0 8px;
@@ -172,30 +165,27 @@ legend
   text-align: center;
 }
 
-footer
+#recap_container
 {
   margin-top: 80px;
-  margin-bottom: 400px;
+  margin-bottom: 50px;
 }
 #resa_recap
 {
   border : 2px solid #BADA55;
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
 }
 #annulation
 {
   display: none;
-  margin-left: 30px;
-  margin-top: 10px;
-  padding: 10px 0 10px 0;
   background-color: orange;
   border : 2px solid #BADA55;
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   transition: transform 0.3s;
   cursor: pointer;
@@ -222,29 +212,16 @@ footer
 {
   width: 300px;
   height: 150px;
-  margin-top: 20px;
-  margin-left: 25px;
   border: 1px solid black;
   box-shadow: 7px 7px 7px darkgrey;
 }
 
-#box_boutons
+.btn
 {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 25px;
-}
-
-#valider_canvas, #effacer_canvas
-{
-  height: 30px;
-  padding-top: 4px;
-  text-align: center;
   border : 2px solid #BADA55;
   border-radius: 8px;
   box-shadow: 4px 4px 4px darkgrey;
   transition: transform 0.3s;
-  cursor: pointer;
 }
 
 #valider_canvas
@@ -273,41 +250,61 @@ footer
 
 #annuler_validation
 {
-  height: 30px;
-  margin-top: 20px;
-  padding-top: 4px;
-  text-align: center;
+  margin-top: 15px;
   background-color: orange;
-  border : 2px solid #BADA55;
-  border-radius: 8px;
-  box-shadow: 4px 4px 4px darkgrey;
-  transition: transform 0.3s;
-  cursor: pointer;
 }
 
 #annuler_validation:hover
 {
   transform: scale(1.2);
   background-color: red;
-  box-shadow: 10px 8px 8px darkgrey;
   color: white;
 }
-/* Définition media queries */
+
+/*
+* Footer
+*/
+footer
+{
+  background-color: #BADA55;
+}
+/*
+* Définition media queries
+*/
 
 @media only screen and (max-width: 600px)
 {
 
+  h1 img
+  {
+      width: 30%;
+  }
   h1
   {
-
-    font-size: 2rem;
+    font-size: 1rem;
   }
-  .slide img
+
+  .slide
   {
-    width: 80%;
-    height: auto;
-    margin: 20px 0 30px 35px;
-    box-shadow:  10px 10px 10px #3232321a;
+    width: 100%;
+  }
+
+  .carousel_next, .carousel_prev
+  {
+    top: auto;
+    bottom: -3px;
+    margin-top: -40px;
+    right: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .carousel_prev
+  {
+    left: 30px;
+  }
+  .fas
+  {
+    font-size: 25px;
   }
 
   #map_velo
@@ -315,10 +312,7 @@ footer
     height: 250px;
   }
 
-  #resa_recap
-  {
-    margin-bottom: 30px;
-  }
+
 }
 
 @media only screen and (min-width: 600px) and (max-width: 768px)
@@ -326,54 +320,58 @@ footer
 
   h1
   {
-    top: 1.5rem;
-    left: 1.8rem;
     font-size: 2rem;
   }
-  fieldset
+  .slide
   {
-    width: 18rem;
-    height: 15rem;
+    width: 95%;
   }
-  #resa_submit
+
+  .carousel_next, .carousel_prev
   {
-    margin: 1rem 4rem 1rem 6rem;
+    top: auto;
+    bottom: 0;
+    margin-top: -40px;
+    right: 150px;
+    cursor: pointer;
+    transition: 0.3s;
   }
+  .carousel_prev
+  {
+    left: 150px;
+  }
+  .fas
+  {
+    font-size: 40px;
+  }
+
+  #map_velo
+  {
+    height: 250px;
+  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px)
 {
-  header
+  .fas
   {
-    height: 48rem;
-  }
-  h1
-  {
-    left: 20rem;
-    font-size: 2.5rem;
-  }
-  .slide img
-  {
-    width: 600px;
-    height: auto;
-    margin: 2rem 1rem 2rem 11rem;
-    box-shadow:  10px 10px 10px #3232321a;
+    font-size: 60px;
   }
   #map_velo
   {
-    width: 25rem;
-    height: 20rem;
-    margin: 2rem 5rem 2rem 0rem;
+    height: 280px;
   }
+}
 
-  fieldset
+@media only screen and (min-width: 992px) and (max-width: 1200px)
+{
+  .fas
   {
-    width: 18rem;
-    height: 15rem;
-    margin: 5rem 3rem 2rem 0;
+    font-size: 80px;
   }
-  #resa_submit
+  #map_velo
   {
-    margin: 1rem 4rem 1rem 6rem;
+    height: 300px;
   }
 }

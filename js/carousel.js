@@ -77,6 +77,8 @@ class Carousel {
     let prevButton = this.createDivWithClass("carousel_prev");
     this.root.appendChild(nextButton);
     this.root.appendChild(prevButton);
+    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
     nextButton.addEventListener("click", this.next.bind(this));
     prevButton.addEventListener("click", this.prev.bind(this));
     if (this.options.loop === true) {

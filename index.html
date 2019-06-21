@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+        <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css"/>
+        <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css"/>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style_p3.css"  />
+
+        <title>Projet_3</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/carousel.js" async></script>
+
+    </head>
+
+
+    <body>
+
+      <div class="container-fluid">
+        <header>
+          <div class="row">
+            <h1 id="titre" class="page-header mt-2 ml-4"><img src="images/logo_velov.gif" class="img-fluid" alt="logo velo'v" /><span>Réservation</span></h1>
+          </div>
+          <div class="row">
+            <div id="carousel_pano" class="col-12">
+                <div class="slide mx-auto"><img src="images/V/1.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/2.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/3.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/4.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/5.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/6.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/7.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/8.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+                <div class="slide mx-auto"><img src="images/V/9.jpg" class="img-fluid rounded mx-auto d-block" /></div>
+              </div>
+          </div>
+        </header>
+
+        <section class="mt-5 px-auto">
+          <div id="container_section" class"row">
+            <div class="row mx-auto">
+              <div id="map_velo" class="offset-md-1  col-md-5">
+
+              </div>
+              <div class="offset-md-2 mt-4 col-md-3">
+                <div class="row">
+                  <div class="row">
+                    <form class="col-12 mx-auto">
+                      <fieldset class="col-12 mx-auto" >
+                        <legend class="col-12 text-center">
+                          Détail de la station
+                        </legend>
+                        <p class="info_form">Nom de la station : <span id="nom_station"></span></p>
+                        <p class="info_form">Adresse : <span id="adresse_station"></span></p>
+                        <p class="info_form"><spans id="places_station"></spans> places</spans></br>
+                        <span id ="velo_dispo"></span> vélos disponnibles</p>
+                        <label for="nom" class="info_form">Nom :</label>
+                        <input type="text" name="nom" id="nom" class="info_form" required /><br />
+                        <label for="prenom" class="info_form">Prénom :</label>
+                        <input type="text" name="prenom" id="prenom" class="info_form" required />
+                        <input type="submit" value="Valider" id="reservation" class="info_form mx-auto" />
+                        <p id="selection" class="text-center font-weight-bold">Veuillez sélectionner une station sur la carte.</p>
+                      </fieldset>
+                    </form>
+                  </div>
+                  <div id="help_resa" class="row">
+                    <p class="col-sm-12 p-auto">Si vous ne pouvez placer votre réservation vérifiez que : </p>
+                    <ul>
+                      <li>Vous n'avez pas de réservation en cours. Sinon, vous devez l'annuler avant d'en placer une nouvelle</li>
+                      <li>Vous avez renseigné un nom et un prénom valide</li>
+                      <li>Vous avez bien signé le formulaire</li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="recap_container" class="row mx-auto mb-4">
+            <div id="resa_recap" class="offset-md-1 offset-lg-2 my-auto col-md-4">
+              <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span></br>
+              Temps restant : <span id="resa_temps"></span></p>
+              <p id="resa_over">Vous n'avez pas de réservation en cours.</p>
+            </div>
+            <button type="button" id="annulation" class="btn offset-1 my-auto">Annuler la réservation</button>
+            <div id="canvas_container" class="offset-lg-1 mt-4 mx-auto col-md-6 col-lg-3">
+              <canvas id="canvas" class="mx-auto">Canvas</canvas>
+              <div id="box_boutons" class="row mx-auto mt-4">
+                <button type="button" id="valider_canvas" class="offset-1 btn">Réserver</button>
+                <button type="button" id="effacer_canvas" class="offset-2 btn">Effacer</button>
+                <button type="button" id="annuler_validation" class="offset-2 btn" >Annuler la réservation</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer class="page-footer mb-2 font-small pt-2">
+          <div class="offset-md-1  col-3">
+            <a href="https://velov.grandlyon.com/home"><img src="images/logo_velov.gif" alt="logo velo'v" class="img-fluid" /></a>
+          </div>
+          <p class="text-right">Site réalisé dans le cadre d'un projet de formation.</p>
+        </footer>
+      </div>
+
+
+      <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+           integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+           crossorigin=""></script>
+      <script src="js/ajax.js"></script>
+      <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
+      <script src="js/canvas.js"></script>
+      <script src="js/timer.js"></script>
+      <script src="js/map_velo.js"></script>
+
+    </body>
+
+</html>
