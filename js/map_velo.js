@@ -9,7 +9,7 @@ var MapLyon = {
   formElt: document.querySelector("form"),
   latElt: 45.75,
   lngElt: 4.825,
-  regexElt: /^[a-zA-ZéêëïËÊÏ][a-zA-ZéêëïËÊÏ\-]+$/,
+  regexElt: /^[a-zA-ZéêëïËÊÏ][a-zA-ZéêëïËÊÏ\s\-]+$/,
 
 
   init () {
