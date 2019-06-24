@@ -219,19 +219,3 @@ class Carousel {
     return this.isMobile ? 1 : this.options.slidesVisible;
   }
 }
-
-let onReady = function () {
-
-  new Carousel(document.getElementById("carousel_pano"), {
-    slidesToScroll: 1,
-    slidesVisible: 1,
-    loop: true,
-    pagination: true
-  });
-
-}
-
-if (document.readyState !== "loading") {
-  onReady();
-}
-document.addEventListener("DOMContentLoaded", onReady);

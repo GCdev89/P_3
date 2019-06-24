@@ -1,7 +1,11 @@
-var Canvas = {
+let Canvas = {
+
+  /**
+  *@param {boolean} dragging vérrifie si l'utilisateur effectue une action
+  *@param {boolean} drawing vérrifie si l'utilisateur a dessiné
+  */
   canvas: document.getElementById("canvas"),
   ctx: document.getElementById("canvas").getContext("2d"),
-  color: "#000",
   dragging: false,
   drawing: false,
   radius: 2,
@@ -20,19 +24,31 @@ var Canvas = {
     this.canvas.addEventListener("mouseup", this.disengage);
     this.canvas.addEventListener("mouseleave", this.disengage);
   },
+  /*
+  * Détecte le début du dessin
+  */
   engage(e){
     Canvas.dragging = true;
     Canvas.putPoint(e);
   },
+  /*
+  * Détecte le début du dessin sur tactile
+  */
   engageTactile(e){
     e.preventDefault();
     Canvas.dragging = true;
     Canvas.putPointTactile(e);
   },
+  /*
+  * Détecte l'arrêt du dessin
+  */
   disengage() {
     Canvas.dragging = false;
     Canvas.ctx.beginPath();
   },
+  /*
+  * Place un point à l'emplacement du pointeur, et relie les points si plusieurs sont disponnibles
+  */
   putPoint(e) {
     Canvas.ctx.lineWidth = this.radius*2;
 
@@ -47,11 +63,15 @@ var Canvas = {
       Canvas.drawing = true;
     }
   },
+  /*
+  * De même que la version desktop, mais corrige les comportements lié aux smartphones et tablettes
+  */
   putPointTactile(e) {
-    e.preventDefault();
+    e.preventDefault(); // Empêche le comportement par défaut
     Canvas.ctx.lineWidth = this.radius*2;
-    let rect = Canvas.canvas.getBoundingClientRect();
-    let touch = e.touches[0];
+    let rect = Canvas.canvas.getBoundingClientRect(); // Lie Canvas à une zone du viewport
+    let touch = e.touches[0]; // Récupère les informations lié aux touches
+      // Calcule les coordonnées sur le canvas en corrigeant les écarts
         touchX = (touch.clientX - rect.left) / (rect.right - rect.left) * Canvas.canvas.width;
         touchY = (touch.clientY - rect.top) / (rect.bottom - rect.top) * Canvas.canvas.height;
     if (Canvas.dragging) {
@@ -65,17 +85,22 @@ var Canvas = {
       Canvas.drawing = true;
     }
   },
+  /*
+  * Réinitialise le canvas
+  */
   clearCanvas() {
     Canvas.ctx.clearRect(0, 0, Canvas.canvas.width, Canvas.canvas.height);
     Canvas.drawing = false;
   },
+  /*
+  * Vérifie que le canvas a été signé et le valide
+  */
   validateCanvas() {
     if (Canvas.drawing) {
-      var data = Canvas.canvas.toDataURL();
+      let data = Canvas.canvas.toDataURL();
       window.sessionStorage.setItem("signature", data);
       return Canvas.drawing;
     }
   }
 
 }
-document.getElementById("effacer_canvas").addEventListener("click", Canvas.clearCanvas)

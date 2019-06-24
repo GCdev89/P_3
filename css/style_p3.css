@@ -1,48 +1,39 @@
 /*
 * Définition du style de la page
 */
-
-
 body
 {
   background-color: #fcfbef;
 }
-
 /*
 * Style slider
 */
 
 .page-header
 {
-  margin: 0 100px 20px;
   border-bottom: 2px solid #ff5757;
   color: black;
 }
-
 /*
 * Carousel
 */
-.carousel{
+.carousel
+{
   position: relative;
   overflow: hidden;
 }
-
 .carousel_item
 {
   float: left;
   height: auto;
 }
-
-.carousel_container {
-  background-color: #fcfbef;
-
+.carousel_container
+{
   transition: transform 0.3s;
   transform: translate3d(0, 0, 0);
 }
-
 .carousel_container::after
 {
-  background-color: #fcfbef;
   content: " ";
   clear: both;
   display: table;
@@ -53,14 +44,11 @@ body
 }
 .slide img
 {
-  height: auto;
-  margin-bottom: 45px;
   border: 1px solid #3e5b43;
-  box-shadow:  10px 10px 10px #3232321a;
+  box-shadow:  10px 10px 10px darkgrey;
 }
 .carousel_next, .carousel_prev
 {
-  z-index: 2000;
   position: absolute;
   width: 30px;
   background-color: rgba(252, 251, 239, 0);
@@ -88,7 +76,6 @@ body
 {
   display: none;
 }
-
 .carousel_pagination
 {
   position: absolute;
@@ -97,7 +84,6 @@ body
   right: 0;
   text-align: center;
 }
-
 .caroussel_pagination_button
 {
   width: 12px;
@@ -109,24 +95,22 @@ body
   box-shadow: 0 2px 5px #3232321a;
   transition: transform 0.3s;
   cursor: pointer;
-  }
-
+}
 .caroussel_pagination_button-active, .caroussel_pagination_button:hover
 {
   transform: scale(1.4);
   background-color: #3e5b43;
 }
-
 /*
-* Style section
+* Style section map + formulaire
 */
-
+/* Format de la carte */
 #map_velo
 {
   height: 400px;
   box-shadow: 10px 10px 10px darkgrey;
 }
-
+/* Mise en forme du formulaire */
 fieldset
 {
   height: fit-content;
@@ -135,40 +119,23 @@ fieldset
   border-radius: 8px;
   box-shadow: 7px 7px 7px darkgrey;
 }
-
 legend
 {
-
   border-radius: 25%;
   border-bottom: 1px solid #BADA55;
 }
-
 .info_form
 {
   display: none;
 }
-
-#reservation
-{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
 #help_resa
 {
   display: none;
-  margin-top: 20px;
   background-color: orange;
   border : 1px solid #BADA55;
   border-radius: 8px 8px 0 8px;
   box-shadow: 7px 7px 7px darkgrey;
   text-align: center;
-}
-
-#recap_container
-{
-  margin-top: 80px;
-  margin-bottom: 50px;
 }
 #resa_recap
 {
@@ -194,16 +161,12 @@ legend
 {
   transform: scale(1.2);
   background-color: red;
-  box-shadow: 10px 8px 8px darkgrey;
   color: white;
 }
-
 #resa_complete
 {
   display: none;
 }
-
-
 #canvas_container
 {
   display: none;
@@ -212,10 +175,9 @@ legend
 {
   width: 300px;
   height: 150px;
-  border: 1px solid black;
+  border: 1px solid #3e5b43;
   box-shadow: 7px 7px 7px darkgrey;
 }
-
 .btn
 {
   border : 2px solid #BADA55;
@@ -223,22 +185,19 @@ legend
   box-shadow: 4px 4px 4px darkgrey;
   transition: transform 0.3s;
 }
-
 #valider_canvas
 {
   background-color: lightgreen;
 }
-
 #valider_canvas:hover
 {
   background-color: green;
   color: white;
   transform: scale(1.2);
 }
-
 #effacer_canvas
 {
-  background-color: rgb(100, 100, 100);
+  background-color: rgb(90, 90, 90);
   color: white;
 }
 #effacer_canvas:hover
@@ -247,20 +206,16 @@ legend
   color: white;
   transform: scale(1.2);
 }
-
 #annuler_validation
 {
-  margin-top: 15px;
   background-color: orange;
 }
-
 #annuler_validation:hover
 {
   transform: scale(1.2);
   background-color: red;
   color: white;
 }
-
 /*
 * Footer
 */
@@ -271,10 +226,8 @@ footer
 /*
 * Définition media queries
 */
-
 @media only screen and (max-width: 600px)
 {
-
   h1 img
   {
       width: 30%;
@@ -283,20 +236,16 @@ footer
   {
     font-size: 1rem;
   }
-
   .slide
   {
     width: 100%;
   }
-
   .carousel_next, .carousel_prev
   {
     top: auto;
     bottom: -3px;
     margin-top: -40px;
     right: 30px;
-    cursor: pointer;
-    transition: 0.3s;
   }
   .carousel_prev
   {
@@ -306,18 +255,13 @@ footer
   {
     font-size: 25px;
   }
-
   #map_velo
   {
     height: 250px;
   }
-
-
 }
-
 @media only screen and (min-width: 600px) and (max-width: 768px)
 {
-
   h1
   {
     font-size: 2rem;
@@ -326,15 +270,12 @@ footer
   {
     width: 95%;
   }
-
   .carousel_next, .carousel_prev
   {
     top: auto;
     bottom: 0;
     margin-top: -40px;
     right: 150px;
-    cursor: pointer;
-    transition: 0.3s;
   }
   .carousel_prev
   {
@@ -344,12 +285,10 @@ footer
   {
     font-size: 40px;
   }
-
   #map_velo
   {
     height: 250px;
   }
-
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px)
@@ -363,7 +302,6 @@ footer
     height: 280px;
   }
 }
-
 @media only screen and (min-width: 992px) and (max-width: 1200px)
 {
   .fas

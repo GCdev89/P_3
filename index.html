@@ -22,84 +22,77 @@
 
     </head>
 
-
     <body>
 
       <div class="container-fluid">
+
         <header>
-          <div class="row">
-            <h1 id="titre" class="page-header mt-2 ml-4"><img src="images/logo_velov.gif" class="img-fluid" alt="logo velo'v" /><span>Réservation</span></h1>
-          </div>
-          <div class="row">
-            <div id="carousel_pano" class="col-12">
-                <div class="slide mx-auto"><img src="images/V/1.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/2.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/3.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/4.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/5.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/6.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/7.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/8.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-                <div class="slide mx-auto"><img src="images/V/9.jpg" class="img-fluid rounded mx-auto d-block" /></div>
-              </div>
-          </div>
+          <h1 id="titre" class="page-header mt-2 ml-2 mx-md-5"><img src="images/logo_velov.gif" class="img-fluid" alt="logo velo'v" /><span>Réservation</span></h1>
         </header>
 
+        <section class="row mt-5">
+          <div id="carousel_pano" class="col-12">
+            <div class="slide mx-auto"><img src="images/V/1.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/2.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/3.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/4.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/5.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/6.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/7.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/8.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/9.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+          </div>
+        </section>
+
         <section class="mt-5 px-auto">
-          <div id="container_section" class"row">
-            <div class="row mx-auto">
-              <div id="map_velo" class="offset-md-1  col-md-5">
-
-              </div>
-              <div class="offset-md-2 mt-4 col-md-3">
+          <div class="row mx-auto">
+            <div id="map_velo" class="offset-md-1  col-md-5"></div>
+            <div class="offset-md-2 mt-4 col-md-3">
+              <div class="row">
                 <div class="row">
-                  <div class="row">
-                    <form class="col-12 mx-auto">
-                      <fieldset class="col-12 mx-auto" >
-                        <legend class="col-12 text-center">
-                          Détail de la station
-                        </legend>
-                        <p class="info_form">Nom de la station : <span id="nom_station"></span></p>
-                        <p class="info_form">Adresse : <span id="adresse_station"></span></p>
-                        <p class="info_form"><spans id="places_station"></spans> places</spans></br>
-                        <span id ="velo_dispo"></span> vélos disponnibles</p>
-                        <label for="nom" class="info_form">Nom :</label>
-                        <input type="text" name="nom" id="nom" class="info_form" required /><br />
-                        <label for="prenom" class="info_form">Prénom :</label>
-                        <input type="text" name="prenom" id="prenom" class="info_form" required />
-                        <input type="submit" value="Valider" id="reservation" class="info_form mx-auto" />
-                        <p id="selection" class="text-center font-weight-bold">Veuillez sélectionner une station sur la carte.</p>
-                      </fieldset>
-                    </form>
-                  </div>
-                  <div id="help_resa" class="row">
-                    <p class="col-sm-12 p-auto">Si vous ne pouvez placer votre réservation vérifiez que : </p>
-                    <ul>
-                      <li>Vous n'avez pas de réservation en cours. Sinon, vous devez l'annuler avant d'en placer une nouvelle</li>
-                      <li>Vous avez renseigné un nom et un prénom valide</li>
-                      <li>Vous avez bien signé le formulaire</li>
-                    </ul>
-
-                  </div>
+                  <form class="col-12 mx-auto">
+                    <fieldset class="col-12 mx-auto" >
+                      <legend class="col-12 text-center">Détail de la station</legend>
+                      <p class="info_form">Nom de la station : <span id="nom_station"></span></p>
+                      <p class="info_form">Adresse : <span id="adresse_station"></span></p>
+                      <p class="info_form"><spans id="places_station"></spans> places</spans></br>
+                      <span id ="velo_dispo"></span> vélos disponnibles</p>
+                      <label for="nom" class="info_form">Nom :</label>
+                      <input type="text" name="nom" id="nom" class="info_form" required /><br />
+                      <label for="prenom" class="info_form">Prénom :</label>
+                      <input type="text" name="prenom" id="prenom" class="info_form" required />
+                      <input type="submit" value="Valider" id="reservation" class="info_form mx-auto my-4" />
+                      <p id="selection" class="text-center font-weight-bold">Veuillez sélectionner une station sur la carte.</p>
+                    </fieldset>
+                  </form>
+                </div>
+                <div id="help_resa" class="row mt-4">
+                  <p class="col-sm-12 p-auto">Si vous ne pouvez placer votre réservation vérifiez que : </p>
+                  <ul>
+                    <li class="text-left">Vous n'avez pas de réservation en cours. Sinon, vous devez l'annuler avant d'en placer une nouvelle</li>
+                    <li class="text-left">Vous avez renseigné un nom et un prénom valide</li>
+                    <li class="text-left">Vous avez bien signé le formulaire</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
-          <div id="recap_container" class="row mx-auto mb-4">
-            <div id="resa_recap" class="offset-md-1 offset-lg-2 my-auto col-md-4">
-              <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span></br>
-              Temps restant : <span id="resa_temps"></span></p>
-              <p id="resa_over">Vous n'avez pas de réservation en cours.</p>
-            </div>
-            <button type="button" id="annulation" class="btn offset-1 my-auto">Annuler la réservation</button>
-            <div id="canvas_container" class="offset-lg-1 mt-4 mx-auto col-md-6 col-lg-3">
+          <div id="recap_container" class="row mx-auto my-5">
+            <div id="canvas_container" class="order-md-2 mt-4 mx-auto col-md-6 col-lg-3">
               <canvas id="canvas" class="mx-auto">Canvas</canvas>
               <div id="box_boutons" class="row mx-auto mt-4">
                 <button type="button" id="valider_canvas" class="offset-1 btn">Réserver</button>
                 <button type="button" id="effacer_canvas" class="offset-2 btn">Effacer</button>
-                <button type="button" id="annuler_validation" class="offset-2 btn" >Annuler la réservation</button>
+                <button type="button" id="annuler_validation" class="offset-2 mt-3 btn" >Annuler la réservation</button>
               </div>
             </div>
+            <div id="resa_recap" class="order-md-1 offset-md-1 offset-lg-2 my-md-auto mt-4 col-md-4">
+              <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span></br>
+              Temps restant : <span id="resa_temps"></span></p>
+              <p id="resa_over">Vous n'avez pas de réservation en cours.</p>
+            </div>
+            <button type="button" id="annulation" class="btn order-md-3 offset-1 mt-4 my-md-auto">Annuler la réservation</button>
+
           </div>
         </section>
         <footer class="page-footer mb-2 font-small pt-2">
@@ -119,6 +112,7 @@
       <script src="js/canvas.js"></script>
       <script src="js/timer.js"></script>
       <script src="js/map_velo.js"></script>
+      <script src="js/form.js"></script>
 
     </body>
 
