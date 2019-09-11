@@ -43,7 +43,7 @@ class Carousel {
     if (this.options.navigation === true) {
       this.createNavigation();
     }
-    if (this.options.navigation === true) {
+    if (this.options.pagination === true) {
       this.createPagination();
     }
 
@@ -62,9 +62,7 @@ class Carousel {
 
   }
   /*
-  *
-  *Applique les bonnes dimensions aux éléments  *
-  *
+  *Applique les bonnes dimensions aux éléments
   */
   setStyle () {
     let ratio = this.items.length / this.slidesVisible;
@@ -98,29 +96,6 @@ class Carousel {
     });
   }
 
-  /**
-  * Crée la pagination dans le DOM
-  */
-
-  createPagination () {
-    let pagination = this.createDivWithClass("carousel_pagination");
-    let buttons = [];
-    this.root.appendChild(pagination);
-    for (let i = 0; i < this.items.length; i = i + this.options.slidesToScroll) {
-      let button = this.createDivWithClass("caroussel_pagination_button");
-      button.addEventListener("click", () => this.gotoItem(i));
-      pagination.appendChild(button);
-      buttons.push(button);
-    }
-    this.onMove(index => {
-      let activeButton = buttons[Math.floor(index / this.options.slidesToScroll)];
-      if (activeButton) {
-        buttons.forEach(button => button.classList.remove("caroussel_pagination_button-active"));
-        activeButton.classList.add("caroussel_pagination_button-active");
-      }
-    })
-  }
-
   next () {
     this.gotoItem(this.currentItem + this.slidesToScroll);
   }
@@ -131,8 +106,6 @@ class Carousel {
   /**
   * Déplace le carousel vers l'élément ciblé
   * @param {number} index
-  *
-  *
   */
   gotoItem (index) {
     if (index < 0) {
@@ -153,6 +126,27 @@ class Carousel {
     this.currentItem = index;
     this.moveCallbacks.forEach(cb => cb(index));
   }
+  /**
+  * Crée la pagination dans le DOM
+  */
+  createPagination () {
+    let pagination = this.createDivWithClass("carousel_pagination");
+    let buttons = [];
+    this.root.appendChild(pagination);
+    for (let i = 0; i < this.items.length; i = i + this.options.slidesToScroll) {
+      let button = this.createDivWithClass("caroussel_pagination_button");
+      button.addEventListener("click", () => this.gotoItem(i));
+      pagination.appendChild(button);
+      buttons.push(button);
+    }
+    this.onMove(index => {
+      let activeButton = buttons[Math.floor(index / this.options.slidesToScroll)];
+      if (activeButton) {
+        buttons.forEach(button => button.classList.remove("caroussel_pagination_button-active"));
+        activeButton.classList.add("caroussel_pagination_button-active");
+      }
+    })
+  }
 
   /*
   *Gestion défilement automatique
@@ -165,7 +159,7 @@ class Carousel {
       } else {
         this.intervalId = setInterval (this.next.bind(this), 5000);
       }
-      this.intervalOn = !this.intervalOn
+      this.intervalOn = !this.intervalOn;
     });
   }
 

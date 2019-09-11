@@ -4,8 +4,8 @@ let Timer = {
   *@param {boolean} resaOn Vérifie l'état de la réservation, par défaut false
   */
   timeElt: 20,
-  intervalCountDown: "",
   resaOn: false,
+  intervalCountDown: "",
 
 
   initTimer() {

@@ -10,8 +10,6 @@ let Canvas = {
   drawing: false,
   radius: 2,
 
-
-
   initCanvas() {
     document.getElementById("canvas_container").style.display = "block";
     // Gestion du tactile
@@ -102,5 +100,4 @@ let Canvas = {
       return Canvas.drawing;
     }
   }
-
 }

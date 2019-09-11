@@ -34,7 +34,7 @@ body
 }
 .carousel_container::after
 {
-  content: " ";
+  content: "";
   clear: both;
   display: table;
 }
@@ -49,6 +49,7 @@ body
 }
 .carousel_next, .carousel_prev
 {
+  z-index: 2000;
   position: absolute;
   width: 30px;
   background-color: rgba(252, 251, 239, 0);

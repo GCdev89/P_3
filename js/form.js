@@ -14,7 +14,7 @@ let Form = {
 
   init() {
     /*
-    * Gère la validation du formulaire appelle le canvas signature et clear un éventuel canvas déjà existant
+    * Gère la validation du formulaire appelle le canvas signature et clear une éventuelle signature existante
     */
     MapLyon.formElt.addEventListener("submit", function(e){
       if ((Form.regexElt.test(MapLyon.formElt.elements.nom.value)) && (Form.regexElt.test(MapLyon.formElt.elements.prenom.value))) {
@@ -76,7 +76,7 @@ let Form = {
         reservationNom = MapLyon.formElt.elements.nom.value,
         reservationPrenom = MapLyon.formElt.elements.prenom.value;
     /*
-    * Appel des fonctions
+    * Appel de la fonction
     */
     Canvas.validateCanvas();
     /*
@@ -123,8 +123,6 @@ let Form = {
 
 let onReady = function() {
   new Carousel(document.getElementById("carousel_pano"), {
-    slidesToScroll: 1,
-    slidesVisible: 1,
     loop: true,
     pagination: true
   });

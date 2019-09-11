@@ -5,14 +5,18 @@
     <head>
 
         <meta charset="utf-8" />
+        <!-- Feuille de style Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Feuille de style Leaflet -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin=""/>
+        <!-- Feuille de style de MarkerCluster -->
         <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css"/>
         <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css"/>
-
+        <!-- Ajout de FontAwesome pour les icones -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <!-- Feuille de style du projet -->
         <link rel="stylesheet" href="css/style_p3.css"  />
 
         <title>Projet_3</title>
@@ -32,15 +36,15 @@
 
         <section class="row mt-5">
           <div id="carousel_pano" class="col-12">
-            <div class="slide mx-auto"><img src="images/V/1.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/2.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/3.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/4.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/5.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/6.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/7.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/8.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
-            <div class="slide mx-auto"><img src="images/V/9.jpg" class="img-fluid rounded mx-auto mb-5 d-block" /></div>
+            <div class="slide mx-auto"><img src="images/V/1.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/2.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/3.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/4.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/5.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/6.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/7.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/8.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
+            <div class="slide mx-auto"><img src="images/V/9.jpg" class="img-fluid rounded mx-auto mb-5 d-block" alt="Notice Velo'V" /></div>
           </div>
         </section>
 
@@ -55,7 +59,7 @@
                       <legend class="col-12 text-center">Détail de la station</legend>
                       <p class="info_form">Nom de la station : <span id="nom_station"></span></p>
                       <p class="info_form">Adresse : <span id="adresse_station"></span></p>
-                      <p class="info_form"><spans id="places_station"></spans> places</spans></br>
+                      <p class="info_form"><span id="places_station"></span> places<br />
                       <span id ="velo_dispo"></span> vélos disponnibles</p>
                       <label for="nom" class="info_form">Nom :</label>
                       <input type="text" name="nom" id="nom" class="info_form" required /><br />
@@ -87,7 +91,7 @@
               </div>
             </div>
             <div id="resa_recap" class="order-md-1 offset-md-1 offset-lg-2 my-md-auto mt-4 col-md-4">
-              <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span></br>
+              <p id="resa_complete">Vélo réservé à la station <span id="resa_station"></span> par <span id="resa_name"></span><br />
               Temps restant : <span id="resa_temps"></span></p>
               <p id="resa_over">Vous n'avez pas de réservation en cours.</p>
             </div>

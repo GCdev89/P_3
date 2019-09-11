@@ -29,8 +29,6 @@ let MapLyon = {
         maxZoom: 20
     }).addTo(myMap);
 
-    let reservationNom;
-    let reservationPrenom;
     /*
     * Appel ajax des données de JC. Decaux
     */
@@ -89,7 +87,6 @@ let MapLyon = {
             let getPrenom = window.localStorage.getItem("veloLyonPrenomValue");
             MapLyon.selection.style.display = "none";
             MapLyon.stationNameElt.textContent = station.name;
-            //window.sessionStorage.setItem("veloLyonStationName", station.name); // Enregistrement en session de la station réservée
             MapLyon.stationAddressElt.textContent = station.address;
             MapLyon.stationPlacesElt.textContent = station.available_bike_stands;
             MapLyon.veloDispoElt.textContent = station.available_bikes;
